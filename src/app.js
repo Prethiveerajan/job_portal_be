@@ -18,11 +18,14 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:5173"], 
+    origin: [
+      "http://localhost:3000",  // Local development frontend
+      "http://localhost:5173",  // Vite-based frontend
+      "https://job-portal-fe-five.vercel.app" // Your Vercel frontend URL
+    ],
     credentials: true, // Allow cookies
   })
 );
-
 
 
 
