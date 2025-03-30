@@ -6,7 +6,7 @@ const jobRoutes = require("./routes/jobRoutes");
 const errorHandler = require("./middleware/errorMiddleware");
 
 dotenv.config();
-connectDB();
+
 
 const app = express();
 app.use(express.json());
@@ -19,4 +19,11 @@ app.use("/api/jobs", jobRoutes);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+connectDB()
+    .then(() => {
+        app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    })
+    .catch((error) => {
+        console.log(`Error connecting DB + ${error}`)
+    })
