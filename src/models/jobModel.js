@@ -1,3 +1,4 @@
+
 const mongoose = require("mongoose");
 
 const JobSchema = new mongoose.Schema({
@@ -11,6 +12,7 @@ const JobSchema = new mongoose.Schema({
   jobDescription: { type: String, required: true },
   logo: { type: String, default: "" },
   postedAt: { type: Date, default: Date.now },
+  createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }, // Link job to user
 });
 
 module.exports = mongoose.model("Job", JobSchema);
